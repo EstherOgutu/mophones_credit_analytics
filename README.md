@@ -116,14 +116,16 @@ con = duckdb.connect('dev.duckdb')
 # This query identifies 'toxic' segments by calculating the Arrears Burden %
 query = """ 
 SELECT 
-    account_status, 
-    COUNT(*) AS total_loans, 
-    ROUND(SUM(LOAN_PRICE), 0) AS total_value, 
-    ROUND(SUM(ARREARS), 0) AS total_arrears, 
-    ROUND((SUM(ARREARS) / NULLIF(SUM(LOAN_PRICE), 0)) * 100, 2) AS arrears_burden_pct 
+  account_status, 
+  COUNT(*)                                                    AS total_loans, 
+  ROUND(SUM(LOAN_PRICE), 0)                                   AS total_value, 
+  ROUND(SUM(ARREARS), 0)                                      AS total_arrears, 
+  ROUND((SUM(ARREARS) / NULLIF(SUM(LOAN_PRICE), 0)) * 100, 2) AS arrears_burden_pct 
 FROM rpt_credit_analysis 
-GROUP BY 1 
-ORDER BY arrears_burden_pct DESC 
+GROUP BY 
+  1 
+ORDER BY 
+  arrears_burden_pct DESC 
 """ 
 
 results = con.execute(query).fetchall()
