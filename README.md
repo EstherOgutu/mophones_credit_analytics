@@ -131,6 +131,7 @@ Portfolio health is best measured by the Arrears Burden % and Cure Rates. The an
 Portfolio health is best measured by the Arrears Burden % and Migration Rates. The most critical "Health" indicators for MoPhones are the FPD (First Payment Default) and Return statuses, as these represent nearly 100% loss of expected revenue.
 
 **Portfolio Performance Breakdown**
+
 I calculated the "Arrears Burden" (Total Arrears / Total Loan Price) to identify which account statuses are the most "toxic" to the company's cash flow.
 
 | Status | Loans | Total Value | Total Arrears | Burden % |
@@ -149,6 +150,24 @@ I calculated the "Arrears Burden" (Total Arrears / Total Loan Price) to identify
 1. **Vintage Loss Rates**: Tracking the PAR % of loans based on the month they were issued to identify seasonal risk cohorts.
 2. **Cure Rate (Roll-Back)**: The percentage of loans moving from PAR 30 back to Active. A low cure rate suggests that once a customer is 30 days late, the debt is likely unrecoverable.
 3. **FPD Efficiency**: Tracking First Payment Defaults as the primary "Quality at Entry" metric to monitor credit scoring accuracy.
+
+**Key Findings**
+
+1. **Terminal Loss Threshold**: Once a loan hits PAR 30, the Arrears Burden jumps to 64%, escalating rapidly to 84% (FPD). This indicates a "broken" collection link where loans rarely "cure" once they pass the 30-day mark.
+
+2. **The Return Paradox**: The Return status carries a burden of 100.7%. This suggests that the cost of processing returns, combined with the loss of device value, exceeds the original loan price, making returns more expensive than some defaults.
+
+3. **Quality at Entry**: The high volume of FPD and FMD (representing over 12,000 loans) indicates that risk is not being managed during the life of the loan, but is inherent from the moment of onboarding.
+
+**Recommendations**
+
+1. **Prioritize FPD Efficiency**: Establish First Payment Default as the primary KPI for the sales team. Incentives should be tied to "Second Payment Success" rather than just the initial device disbursement.
+
+2. **Aggressive PAR 7 Intervention**: Since the burden at PAR 7 is only 6.1%, this is the "Golden Window." Collections efforts should be 5x more aggressive during the first 7 days of arrears to prevent migration to the high-risk PAR 30 bucket.
+
+3. **Cure Rate Optimization**: Implement a "Roll-Back" program for PAR 30 customers, offering one-time installment restructuring to move them back to "Active" status before they reach the terminal FMD/FPD stages.
+
+4. **Refine Vintage Tracking**: Transition from static reporting to Vintage Loss Rates. By tracking PAR % based on the month of disbursement, the business can identify if specific marketing campaigns or seasonal promos are bringing in higher-risk cohorts.
 
 <details> 
 <summary><b>Click to view Collection Efficiency Logic (Q2)</b></summary>
