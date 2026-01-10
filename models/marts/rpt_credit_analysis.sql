@@ -28,6 +28,9 @@ SELECT
     calculations.*,
     customers.gender,
     customers.loan_price,
+    customers.nps_score,
+    customers.age_range,
+    customers.income_range,
     -- Calculate the change in arrears
     (calculations.arrears - COALESCE(calculations.previous_month_arrears, 0)) AS arrears_change,
 
