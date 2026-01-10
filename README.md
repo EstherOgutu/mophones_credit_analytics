@@ -94,7 +94,17 @@ Portfolio health is best measured by the Arrears Burden % and Migration Rates. T
 **Portfolio Performance Breakdown**
 I calculated the "Arrears Burden" (Total Arrears / Total Loan Price) to identify which account statuses are the most "toxic" to the company's cash flow.
 
-Return | 9410 | $360,677,058 | $363,198,420 | 100.7% FPD | 6938 | $328,488,667 | $276,977,286 | 84.32% FMD | 5619 | $238,493,215 | $184,941,861 | 77.55% PAR 30 | 25584 | $1,007,074,920 | $646,074,797 | 64.15% PAR 7 | 3782 | $219,711,400 | $13,409,822 | 6.1% Paid Off | 18941 | $373,978,975 | $21,363,045 | 5.71% Inactive | 4025 | $243,969,609 | $4,518,051 | 1.85% Active | 53369 | $3,191,115,285 | $21,766,506 | 0.68% Unknown | 8 | $0 | $0 | 0%
+| Status | Loans | Total Value | Total Arrears | Burden % |
+| :--- | :--- | :--- | :--- | :--- |
+| Return | 9,410 | $360,677,058 | $363,198,420 | 100.7% |
+| FPD | 6,938 | $328,488,667 | $276,977,286 | 84.32% |
+| FMD | 5,619 | $238,493,215 | $184,941,861 | 77.55% |
+| PAR 30 | 25,584 | $1,007,074,920 | $646,074,797 | 64.15% |
+| PAR 7 | 3,782 | $219,711,400 | $13,409,822 | 6.1% |
+| Paid Off | 18,941 | $373,978,975 | $21,363,045 | 5.71% |
+| Inactive | 4,025 | $243,969,609 | $4,518,051 | 1.85% |
+| Active | 53,369 | $3,191,115,285 | $21,766,506 | 0.68% |
+| Unknown | 8 | $0 | $0 | 0% |
 
 **Strategic Metrics for Tracking**
 1. **Vintage Loss Rates**: Tracking the PAR % of loans based on the month they were issued to identify seasonal risk cohorts.
