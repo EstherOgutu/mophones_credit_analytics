@@ -36,19 +36,15 @@ Income	> 150,000	Return	49.73%	4,804
 
 **Volume Risk:** The 26-35 age bracket is the "Engine Room" of the portfolio. While their PAR % isn't the highest, their high loan volume means they represent the largest absolute dollar value at risk.
 
-<details> <summary><b>Click to view Technical SQL & Python Logic</b></summary>
-
-import duckdb
-con = duckdb.connect('dev.duckdb')
-
-#### This query joins the credit reporting table with customer demographics 
-#### to calculate PAR % and loan distribution.
+<details>
+<summary><b>Click to view Technical SQL & Python Logic</b></summary>
 
 ```python
 import duckdb
 con = duckdb.connect('dev.duckdb')
 
-# Unified query for Age and Income Risk Analysis
+# This query joins the credit reporting table with customer demographics 
+# to calculate PAR % and loan distribution.
 query = """
 WITH base AS (
     SELECT 
@@ -81,6 +77,3 @@ ORDER BY segment_type, par_pct DESC
 """
 results = con.execute(query).df()
 print(results)
-
-
-</details>
