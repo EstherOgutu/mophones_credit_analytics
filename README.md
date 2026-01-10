@@ -54,19 +54,19 @@ Based on the demographic and income segmentation, the portfolio is being impacte
 
 **1. The Youth Gap (Age 18–25): 40.96% PAR**
 
-Finding: High First Month Defaults (FMD) suggest these are "thin-file" borrowers. The current scoring model likely overestimates the repayment capacity of users with no established credit history.
+High First Month Defaults (FMD) suggest these are "thin-file" borrowers. The current scoring model likely overestimates the repayment capacity of users with no established credit history.
 
 **2. The Affordability Ceiling (Income <5,000): 46.33% FMD**
 
-Finding: Installments likely exceed disposable income. This segment lacks a "financial buffer," making them highly sensitive to even minor economic shocks.
+Installments likely exceed disposable income. This segment lacks a "financial buffer," making them highly sensitive to even minor economic shocks.
 
 **3. KYC Process Failure (Segment: "Unknown"): >100% Arrears Burden**
 
-Finding: Missing demographic data strongly correlates with bypassed sales protocols or identity fraud. It is nearly impossible to collect from a customer who hasn't been properly identified at onboarding.
+Missing demographic data strongly correlates with bypassed sales protocols or identity fraud. It is nearly impossible to collect from a customer who hasn't been properly identified at onboarding.
 
 **4. Premium "Buyer's Remorse" (Income >150,000): 49.73% Return Rate**
 
-Finding: This is a Logistics/Product risk, not a credit risk. High-earners are returning devices due to dissatisfaction or high expectations rather than an inability to pay.
+This is a Logistics/Product risk, not a credit risk. High-earners are returning devices due to dissatisfaction or high expectations rather than an inability to pay.
 
 **Recommendations**
 
