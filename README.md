@@ -22,11 +22,12 @@ The portfolio demonstrates high demographic sensitivity. Risk is heavily concent
 
 **Below is a summary of the most critical risk segments identified:**
 
-Segment Type	Segment Value	Account Status	PAR %	Loan Count
-Age	18–25	FMD (First Month Default)	40.96%	3,699
-Age	26–35	PAR 30 (1-30 DPD)	29.49%	25,050
-Income	Below 5,000	FMD (First Month Default)	46.33%	439
-Income	> 150,000	Return	49.73%	4,804
+Segment Type,Segment Value,Account Status,Loans,PAR %
+Income,"Below 5,000",FMD (First Month Default),439,46.33%
+Age,18–25,FMD (First Month Default),"3,699",40.96%
+Age,26–35,PAR 30 (1-30 DPD),"25,050",29.49%
+Income,"> 150,000",Return,"4,804",49.73%
+Age,Unknown,Return,"8,918",112.22%
 
 **Strategic Observations:**
 
