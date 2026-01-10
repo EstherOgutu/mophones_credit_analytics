@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: income_age_customer_analysis
+    description: "Enriched customer data including age and income buckets joined with credit snapshots."
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - loan_id
+            - snapshot_month
+
+    columns:
+      - name: loan_id
+        description: "The unique identifier for the loan."
+        tests:
+          - not_null
+
+      - name: age_range
+        description: "Binned age groups for demographic analysis."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['18–25', '26–35', '36–45', '46–55', 'Above 55', 'Unknown']
+
+      - name: income_range
+        description: "Binned income groups based on monthly cash flow."
+        tests:
+          - not_null
+
+  - name: rpt_credit_analysis
+    description: "Final reporting model used for Portfolio Risk and NPS analysis."
+    columns:
+      - name: loan_id
+        tests:
+          - not_null
+      - name: risk_pct
+        description: "Calculated via arrears_ratio macro. Percentage of loan in arrears."
+      - name: portfolio_segment
+        description: "Business logic categorizing loans into Healthy, At Risk, or High Risk."
