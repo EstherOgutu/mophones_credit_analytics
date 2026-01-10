@@ -4,6 +4,21 @@
 ## Project Overview
 This project engineered a modern data pipeline to bridge the gap between financial risk and customer experience. By unifying fragmented credit history, demographic data, and NPS sentiment, I developed a reporting engine that identifies not just who isn't paying, but why they are dissatisfied.
 
+## Project Structure
+
+```text
+mophones_credit_analytics/
+├── analysis/               # Python scripts for final data extraction
+├── macros/                 # Reusable dbt SQL snippets
+├── models/
+│   ├── staging/            # Layer 1: Cleaned & casted raw data (stg_customers, stg_credit)
+│   ├── intermediate/       # Layer 2: Business logic & deduplication (int_income_age)
+│   └── reporting/          # Layer 3: Executive-ready views (rpt_credit_analysis)
+├── seeds/                  # Raw CSV data files (Loans, History, NPS)
+├── tests/                  # Custom data quality tests
+├── dbt_project.yml         # dbt configuration file
+└── README.md               # Executive Summary & Project Documentation
+
 ## The Tech Stack
 This project utilizes the Modern Data Stack (MDS) to ensure scalability, version control, and analytical rigor:
 
