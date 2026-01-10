@@ -19,7 +19,7 @@ dbt test
 The portfolio demonstrates high demographic sensitivity. Risk is heavily concentrated in the **younger demographics (18-25)** and **lower income brackets (<5,000)**. 
 
 <details>
-<summary><b>💻 Click to view Technical SQL & Python Logic (Q1)</b></summary>
+<summary><b>Click to view Technical SQL & Python Logic (Q1)</b></summary>
 
 ```python
 import duckdb
@@ -61,3 +61,5 @@ results = con.execute(query).fetchall()
 for row in results:
     print(row)
 con.close()
+
+</details>
