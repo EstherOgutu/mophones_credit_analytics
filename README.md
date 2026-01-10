@@ -5,10 +5,10 @@ To replicate this analysis, ensure you have the environment configured and run t
 
 <details> <summary><b>Click to expand: DBT Commands</b></summary>
 
-# Run models to build the rpt_credit_analysis tables
+### Run models to build the rpt_credit_analysis tables
 dbt run
 
-# Run tests to ensure data integrity
+### Run tests to ensure data integrity
 dbt test
 
 </details>
@@ -91,3 +91,53 @@ for row in results:
     print(row)
 
 con.close()
+
+### Question 2: Which outcomes best indicate portfolio health, and what metrics should be used?
+
+**Executive Summary:**
+Portfolio health is best measured by the **Arrears Burden %** and **Migration Rates**. Based on the analysis below, the most critical "Health" indicators for MoPhones are the **FPD (First Payment Default)** and **Return** statuses, as these represent nearly 100% loss of expected revenue.
+
+#### 📊 Portfolio Performance Breakdown
+I calculated the "Arrears Burden" (Total Arrears / Total Loan Price) to identify which account statuses are the most "toxic" to the company's cash flow.
+
+| Status | Total Loans | Total Arrears | Arrears Burden % |
+| :--- | :--- | :--- | :--- |
+| **Return** | 9,410 | $363,198,420 | **100.70%** |
+| **FPD** (First Payment Default) | 6,938 | $276,977,286 | **84.32%** |
+| **FMD** (First Month Default) | 5,619 | $184,941,861 | **77.55%** |
+| **PAR 30** | 25,584 | $646,074,797 | **64.15%** |
+| **PAR 7** | 3,782 | $13,409,822 | 6.10% |
+| **Active** | 53,369 | $21,766,506 | 0.68% |
+
+
+
+#### 🔍 Strategic Metrics for Tracking
+To track credit performance over time, I recommend implementing the following three metrics:
+
+1. **Vintage Loss Rates:** Tracking the PAR % of loans based on the month they were issued. This identifies if specific "marketing cohorts" or seasonal sales are riskier than others.
+2. **Cure Rate (Roll-Back):** The percentage of loans moving from PAR 30 back to Active. A low cure rate in this data (given the 64% burden in PAR 30) suggests that once a customer is 30 days late, they are unlikely to ever pay again.
+3. **FPD Efficiency:** Since FPD carries an 84% burden, this is the #1 metric to watch. Any increase in FPD suggests the credit scoring model is becoming too "loose."
+
+---
+
+<details>
+<summary><b>Click to view Collection Efficiency Logic (Python)</b></summary>
+
+```python
+import duckdb
+con = duckdb.connect('dev.duckdb')
+
+query = """
+    SELECT 
+        account_status,
+        COUNT(*) AS total_loans,
+        ROUND(SUM(LOAN_PRICE), 0) AS total_value,
+        ROUND(SUM(ARREARS), 0) AS total_arrears,
+        ROUND((SUM(ARREARS) / NULLIF(SUM(LOAN_PRICE), 0)) * 100, 2) AS arrears_burden_pct
+    FROM rpt_credit_analysis
+    GROUP BY 1
+    ORDER BY arrears_burden_pct DESC
+"""
+results = con.execute(query).fetchall()
+for row in results:
+    print(row)
