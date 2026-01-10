@@ -16,6 +16,7 @@ dbt test
 ### 🔍 Question 1: How do Arrears and Account Status vary across Customer Segments?
 
 **Executive Summary:**
+
 The portfolio demonstrates high demographic sensitivity. Risk is heavily concentrated in the **younger demographics (18-25)** and **lower income brackets (<5,000)**. 
 
 <details>
