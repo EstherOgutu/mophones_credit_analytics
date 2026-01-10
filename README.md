@@ -94,17 +94,15 @@ Portfolio health is best measured by the Arrears Burden % and Migration Rates. T
 **Portfolio Performance Breakdown**
 I calculated the "Arrears Burden" (Total Arrears / Total Loan Price) to identify which account statuses are the most "toxic" to the company's cash flow.
 
-Status | Total Loans | Total Arrears | Arrears Burden % |
-| :--- | :--- | :--- | :--- |
-| Return | 9,410 | $363,198,420 | 100.7% |
-| FPD | 6,938 | $276,977,286 | 84.32% |
-| FMD | 5,619 | $184,941,861 | 77.55% |
-| PAR 30 | 25,584 | $646,074,797 | 64.15% |
-| PAR 7 | 3,782 | $13,409,822 | 6.1% |
-| Paid Off | 18,941 | $21,363,045 | 5.71% |
-| Inactive | 4,025 | $4,518,051 | 1.85% |
-| Active | 53,369 | $21,766,506 | 0.68% |
-| Unknown | 8 | $0 | None% |
+('Return', 9410, 360677058.0, 363198420.0, 100.7)
+('FPD', 6938, 328488667.0, 276977286.0, 84.32)
+('FMD', 5619, 238493215.0, 184941861.0, 77.55)
+('PAR 30', 25584, 1007074920.0, 646074797.0, 64.15)
+('PAR 7', 3782, 219711400.0, 13409822.0, 6.1)
+('Paid Off', 18941, 373978975.0, 21363045.0, 5.71)
+('Inactive', 4025, 243969609.0, 4518051.0, 1.85)
+('Active', 53369, 3191115285.0, 21766506.0, 0.68)
+('Unknown', 8, None, 0.0, None)
 
 **Strategic Metrics for Tracking**
 1. **Vintage Loss Rates**: Tracking the PAR % of loans based on the month they were issued to identify seasonal risk cohorts.
