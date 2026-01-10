@@ -15,6 +15,20 @@ dbt test
 
 ### Question 1: How do Arrears and Account Status vary across Customer Segments?
 
+**Age Segment Analysis**
+Segment Type,Age Group,Account Status,Total Loans,PAR %
+Age,Unknown,Return,"8,967",111.43%
+Age,Unknown,FPD,"6,483",103.44%
+Age,Unknown,FMD,"4,998",90.81%
+Age,Unknown,PAR 30,"21,866",88.97%
+Age,36–45,Return,"3,162",48.95%
+Age,26–35,Return,"7,971",46.90%
+Age,18–25,Return,"4,331",44.82%
+Age,18–25,FMD,"3,696",40.99%
+Age,18–25,FPD,"2,427",40.42%
+Age,36–45,FPD,"1,402",40.22%
+Age,Above 55,Active,"3,905",0.13%
+
 The data reveals four distinct risk drivers that require different management strategies:
 
 **The Youth Gap (Age 18–25):**: 40.96% PAR with high First Month Defaults (FMD).
