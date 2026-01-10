@@ -106,29 +106,33 @@ Active,"53,369","$21,766,506",0.68%
 2. **Cure Rate (Roll-Back)**: The percentage of loans moving from PAR 30 back to Active. A low cure rate suggests that once a customer is 30 days late, the debt is likely unrecoverable.
 3. **FPD Efficiency**: Tracking First Payment Defaults as the primary "Quality at Entry" metric to monitor credit scoring accuracy.
 
-<details> <summary><b>Click to view Collection Efficiency Logic (Q2)</b></summary>
+<details> 
+<summary><b>Click to view Collection Efficiency Logic (Q2)</b></summary>
 
+```python
 import duckdb
 con = duckdb.connect('dev.duckdb')
 
-query = """
-    SELECT 
-        account_status,
-        COUNT(*) AS total_loans,
-        ROUND(SUM(LOAN_PRICE), 0) AS total_value,
-        ROUND(SUM(ARREARS), 0) AS total_arrears,
-        ROUND((SUM(ARREARS) / NULLIF(SUM(LOAN_PRICE), 0)) * 100, 2) AS arrears_burden_pct
-    FROM rpt_credit_analysis
-    GROUP BY 1
-    ORDER BY arrears_burden_pct DESC
-"""
+# This query identifies 'toxic' segments by calculating the Arrears Burden %
+query = """ 
+SELECT 
+    account_status, 
+    COUNT(*) AS total_loans, 
+    ROUND(SUM(LOAN_PRICE), 0) AS total_value, 
+    ROUND(SUM(ARREARS), 0) AS total_arrears, 
+    ROUND((SUM(ARREARS) / NULLIF(SUM(LOAN_PRICE), 0)) * 100, 2) AS arrears_burden_pct 
+FROM rpt_credit_analysis 
+GROUP BY 1 
+ORDER BY arrears_burden_pct DESC 
+""" 
+
 results = con.execute(query).fetchall()
 
-# Clean display
-print(f"{'Status':<12} | {'Loans':<8} | {'Arrears Burden %'}")
+# Print formatted output
 for row in results:
-    print(f"{row[0]:<12} | {row[1]:<8} | {row[4]}%")
+    print(row)
 
 con.close()
+```
 
 </details>
