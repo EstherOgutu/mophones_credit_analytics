@@ -31,6 +31,23 @@ dbt test
 | Age | 36–45 | FPD | 1,402 | 40.22% |
 | Age | Above 55 | Active | 3,905 | 0.13% |
 
+**Income Segment Analysis**
+
+| Segment Type | Income Range | Account Status | Total Loans | PAR % |
+| :--- | :--- | :--- | :--- | :--- |
+| Income | 150,000 and above | Return | 4,801 | 49.73% |
+| Income | 20,000–29,999 | Return | 1,839 | 49.44% |
+| Income | 30,000–49,999 | Return | 2,815 | 49.26% |
+| Income | Below 5,000 | FMD | 442 | 46.30% |
+| Income | 5,000–9,999 | FMD | 450 | 43.71% |
+| Income | Below 5,000 | FPD | 93 | 43.40% |
+| Income | 10,000–19,999 | FPD | 2,150 | 43.37% |
+| Income | 50,000–99,999 | FPD | 3,416 | 40.99% |
+| Income | Below 5,000 | PAR 30 | 368 | 30.78% |
+| Income | 150,000 and above | Active | 46,816 | 0.22% |
+| Income | Below 5,000 | Active | 1,390 | 1.10% |
+| Income | Below 5,000 | Paid Off | 167 | 0.00% |
+
 The data reveals four distinct risk drivers that require different management strategies:
 
 **The Youth Gap (Age 18–25):**: 40.96% PAR with high First Month Defaults (FMD).
