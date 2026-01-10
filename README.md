@@ -94,12 +94,17 @@ Portfolio health is best measured by the Arrears Burden % and Migration Rates. T
 **Portfolio Performance Breakdown**
 I calculated the "Arrears Burden" (Total Arrears / Total Loan Price) to identify which account statuses are the most "toxic" to the company's cash flow.
 
-Account Status,Total Loans,Total Arrears,Arrears Burden %
-Return,"9,410","$363,198,420",100.70%
-FPD (First Payment Default),"6,938","$276,977,286",84.32%
-FMD (First Month Default),"5,619","$184,941,861",77.55%
-PAR 30 (1-30 DPD),"25,584","$646,074,797",64.15%
-Active,"53,369","$21,766,506",0.68%
+Status | Total Loans | Total Arrears | Arrears Burden % |
+| :--- | :--- | :--- | :--- |
+| Return | 9,410 | $363,198,420 | 100.7% |
+| FPD | 6,938 | $276,977,286 | 84.32% |
+| FMD | 5,619 | $184,941,861 | 77.55% |
+| PAR 30 | 25,584 | $646,074,797 | 64.15% |
+| PAR 7 | 3,782 | $13,409,822 | 6.1% |
+| Paid Off | 18,941 | $21,363,045 | 5.71% |
+| Inactive | 4,025 | $4,518,051 | 1.85% |
+| Active | 53,369 | $21,766,506 | 0.68% |
+| Unknown | 8 | $0 | None% |
 
 **Strategic Metrics for Tracking**
 1. **Vintage Loss Rates**: Tracking the PAR % of loans based on the month they were issued to identify seasonal risk cohorts.
