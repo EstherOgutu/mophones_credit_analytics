@@ -91,39 +91,34 @@ for row in results:
     print(row)
 
 con.close()
+-----
 
-### Question 2: Which outcomes best indicate portfolio health, and what metrics should be used?
+Question 2: Which outcomes best indicate portfolio health, and what metrics should be used?
 
-**Executive Summary:**
-Portfolio health is best measured by the **Arrears Burden %** and **Migration Rates**. Based on the analysis below, the most critical "Health" indicators for MoPhones are the **FPD (First Payment Default)** and **Return** statuses, as these represent nearly 100% loss of expected revenue.
+Executive Summary: Portfolio health is best measured by the Arrears Burden % and Migration Rates. The most critical "Health" indicators for MoPhones are the FPD (First Payment Default) and Return statuses, as these represent nearly 100% loss of expected revenue.
 
-#### 📊 Portfolio Performance Breakdown
+📊 Portfolio Performance Breakdown
+
 I calculated the "Arrears Burden" (Total Arrears / Total Loan Price) to identify which account statuses are the most "toxic" to the company's cash flow.
 
-| Status | Total Loans | Total Arrears | Arrears Burden % |
-| :--- | :--- | :--- | :--- |
-| **Return** | 9,410 | $363,198,420 | **100.70%** |
-| **FPD** (First Payment Default) | 6,938 | $276,977,286 | **84.32%** |
-| **FMD** (First Month Default) | 5,619 | $184,941,861 | **77.55%** |
-| **PAR 30** | 25,584 | $646,074,797 | **64.15%** |
-| **PAR 7** | 3,782 | $13,409,822 | 6.10% |
-| **Active** | 53,369 | $21,766,506 | 0.68% |
+Status	Total Loans	Total Arrears	Arrears Burden %
+Return	9,410	$363,198,420	100.70%
+FPD (First Payment Default)	6,938	$276,977,286	84.32%
+FMD (First Month Default)	5,619	$184,941,861	77.55%
+PAR 30	25,584	$646,074,797	64.15%
+PAR 7	3,782	$13,409,822	6.10%
+Active	53,369	$21,766,506	0.68%
+🔍 Strategic Metrics for Tracking
 
+Vintage Loss Rates: Tracking the PAR % of loans based on the month they were issued to identify seasonal risk cohorts.
 
+Cure Rate (Roll-Back): The percentage of loans moving from PAR 30 back to Active. A low cure rate suggests that once a customer is 30 days late, the debt is likely unrecoverable.
 
-#### 🔍 Strategic Metrics for Tracking
-To track credit performance over time, I recommend implementing the following three metrics:
+FPD Efficiency: Tracking First Payment Defaults as the primary "Quality at Entry" metric to monitor credit scoring accuracy.
 
-1. **Vintage Loss Rates:** Tracking the PAR % of loans based on the month they were issued. This identifies if specific "marketing cohorts" or seasonal sales are riskier than others.
-2. **Cure Rate (Roll-Back):** The percentage of loans moving from PAR 30 back to Active. A low cure rate in this data (given the 64% burden in PAR 30) suggests that once a customer is 30 days late, they are unlikely to ever pay again.
-3. **FPD Efficiency:** Since FPD carries an 84% burden, this is the #1 metric to watch. Any increase in FPD suggests the credit scoring model is becoming too "loose."
+<details> <summary><b>💻 Click to view Collection Efficiency Logic (Q2)</b></summary>
 
----
-
-<details>
-<summary><b>Click to view Collection Efficiency Logic (Python)</b></summary>
-
-```python
+Python
 import duckdb
 con = duckdb.connect('dev.duckdb')
 
@@ -141,3 +136,4 @@ query = """
 results = con.execute(query).fetchall()
 for row in results:
     print(row)
+</details>
