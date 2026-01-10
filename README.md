@@ -91,7 +91,8 @@ for row in results:
     print(row)
 
 con.close()
------
+
+</details>
 
 Question 2: Which outcomes best indicate portfolio health, and what metrics should be used?
 
