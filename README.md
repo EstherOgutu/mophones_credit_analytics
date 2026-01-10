@@ -121,23 +121,29 @@ con = duckdb.connect('dev.duckdb')
 # This query identifies 'toxic' segments by calculating the Arrears Burden %
 query = """ 
 SELECT 
-  account_status, 
-  COUNT(*)                                                    AS total_loans, 
-  ROUND(SUM(LOAN_PRICE), 0)                                   AS total_value, 
-  ROUND(SUM(ARREARS), 0)                                      AS total_arrears, 
-  ROUND((SUM(ARREARS) / NULLIF(SUM(LOAN_PRICE), 0)) * 100, 2) AS arrears_burden_pct 
+    account_status, 
+    COUNT(*) AS total_loans, 
+    ROUND(SUM(LOAN_PRICE), 0) AS total_value, 
+    ROUND(SUM(ARREARS), 0) AS total_arrears, 
+    ROUND((SUM(ARREARS) / NULLIF(SUM(LOAN_PRICE), 0)) * 100, 2) AS arrears_burden_pct 
 FROM rpt_credit_analysis 
-GROUP BY 
-  1 
-ORDER BY 
-  arrears_burden_pct DESC 
+GROUP BY 1 
+ORDER BY arrears_burden_pct DESC 
 """ 
-
 results = con.execute(query).fetchall()
 
-# Print formatted output
+header = f"{'Status':<12} | {'Loans':<8} | {'Total Value':<15} | {'Total Arrears':<15} | {'Burden %'}"
+print(header)
+print("-" * len(header))
+
 for row in results:
-    print(row)
+    # Handling None values and formatting with commas but NO dollar sign
+    val = row[2] if row[2] is not None else 0
+    arrears = row[3] if row[3] is not None else 0
+    pct = row[4] if row[4] is not None else 0
+    
+    # {val:<14,.0f} adds commas for thousands but omits the $
+    print(f"{row[0]:<12} | {row[1]:<8} | {val:<14,.0f} | {arrears:<14,.0f} | {pct}%")
 
 con.close()
 ```
