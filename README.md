@@ -61,5 +61,6 @@ results = con.execute(query).fetchall()
 for row in results:
     print(row)
 con.close()
+```
 
 </details>
