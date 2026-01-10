@@ -82,4 +82,5 @@ ORDER BY segment_type, par_pct DESC
 results = con.execute(query).df()
 print(results)
 
+
 </details>
