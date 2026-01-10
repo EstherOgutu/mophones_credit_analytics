@@ -13,11 +13,31 @@ dbt test
 
 </details>
 
-### 🔍 Question 1: How do Arrears and Account Status vary across Customer Segments?
+### Question 1: How do Arrears and Account Status vary across Customer Segments?
 
-**Executive Summary:**
+The data reveals four distinct risk drivers that require different management strategies:
 
-The portfolio demonstrates high demographic sensitivity. Risk is heavily concentrated in the **younger demographics (18-25)** and **lower income brackets (<5,000)**. 
+**The Youth Gap (Age 18–25):**: 40.96% PAR with high First Month Defaults (FMD).
+- Likely "thin-file" borrowers with no credit history. High FMD suggests the scoring model is over-estimating the repayment capacity of first-time borrowers.
+
+**The Affordability Ceiling (Income <5,000)**: 46.33% FMD rate.
+- Installments likely exceed disposable income. These borrowers lack a "financial buffer," making them highly sensitive to minor economic shocks.
+
+**KYC Process Failure (Segment: "Unknown")**: PAR scores exceeding 100%.
+- Missing data usually correlates with bypassed sales protocols or fraud. You cannot collect from a customer you haven't identified.
+
+**The Premium "Buyer's Remorse" (Income >150,000)**: High Return rates (49.73%) rather than defaults.
+- This is a Product/Logistics risk, not a credit risk. High-earners are returning devices due to dissatisfaction rather than an inability to pay.
+
+#### Recommendations
+
+1. For Youth (18-25): Introduce "Step-Up" credit. Start with smaller loans to build a "repayment track record" before unlocking higher limits.
+
+2. For Low-Income: Align repayment cycles with income streams (e.g., daily micro-payments instead of large monthly chunks).
+
+3. For "Unknowns": Tighten Point-of-Sale (POS) controls. Make demographic fields mandatory to prevent "ghost" accounts.
+
+4. For Premium Returns: Improve the "Product fit" or trial period experience to reduce the logistical cost of device returns. 
 
 <details>
 <summary><b>Click to view Technical SQL & Python Logic (Q1)</b></summary>
