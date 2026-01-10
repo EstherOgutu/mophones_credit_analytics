@@ -41,37 +41,43 @@ Income	> 150,000	Return	49.73%	4,804
 import duckdb
 con = duckdb.connect('dev.duckdb')
 
-# This query joins the credit reporting table with customer demographics 
-# to calculate PAR % and loan distribution.
+#### This query joins the credit reporting table with customer demographics 
+#### to calculate PAR % and loan distribution.
+
+```python
+import duckdb
+con = duckdb.connect('dev.duckdb')
+
+# Unified query for Age and Income Risk Analysis
 query = """
-    WITH base AS (
-        SELECT 
-            'Age' AS segment_type,
-            COALESCE(c.age_range, 'Unknown') AS segment_value,
-            r.account_status,
-            r.ARREARS,
-            r.LOAN_PRICE
-        FROM rpt_credit_analysis r
-        LEFT JOIN income_age_customer_analysis c ON r.loan_id = c.loan_id
-        UNION ALL
-        SELECT 
-            'Income' AS segment_type,
-            COALESCE(c.income_range, 'Unknown') AS segment_value,
-            r.account_status,
-            r.ARREARS,
-            r.LOAN_PRICE
-        FROM rpt_credit_analysis r
-        LEFT JOIN income_age_customer_analysis c ON r.loan_id = c.loan_id
-    )
+WITH base AS (
     SELECT 
-        segment_type,
-        segment_value,
-        account_status,
-        COUNT(*) AS loans,
-        ROUND(SUM(ARREARS) * 100.0 / NULLIF(SUM(LOAN_PRICE), 0), 2) AS par_pct
-    FROM base
-    GROUP BY 1, 2, 3
-    ORDER BY segment_type, par_pct DESC
+        'Age' AS segment_type,
+        COALESCE(c.age_range, 'Unknown') AS segment_value,
+        r.account_status,
+        r.ARREARS,
+        r.LOAN_PRICE
+    FROM rpt_credit_analysis r
+    LEFT JOIN income_age_customer_analysis c ON r.loan_id = c.loan_id
+    UNION ALL
+    SELECT 
+        'Income' AS segment_type,
+        COALESCE(c.income_range, 'Unknown') AS segment_value,
+        r.account_status,
+        r.ARREARS,
+        r.LOAN_PRICE
+    FROM rpt_credit_analysis r
+    LEFT JOIN income_age_customer_analysis c ON r.loan_id = c.loan_id
+)
+SELECT 
+    segment_type, 
+    segment_value, 
+    account_status, 
+    COUNT(*) AS loans,
+    ROUND(SUM(ARREARS) * 100.0 / NULLIF(SUM(LOAN_PRICE), 0), 2) AS par_pct
+FROM base
+GROUP BY 1, 2, 3
+ORDER BY segment_type, par_pct DESC
 """
 results = con.execute(query).df()
 print(results)
