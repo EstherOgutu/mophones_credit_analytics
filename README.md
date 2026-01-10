@@ -18,6 +18,7 @@ mophones_credit_analytics/
 ├── tests/                  # Custom data quality tests
 ├── dbt_project.yml         # dbt configuration file
 └── README.md               # Executive Summary & Project Documentation
+```
 
 ## The Tech Stack
 This project utilizes the Modern Data Stack (MDS) to ensure scalability, version control, and analytical rigor:
