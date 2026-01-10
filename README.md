@@ -207,3 +207,60 @@ con.close()
 ```
 
 </details>
+
+The following table represents the final output of the rpt_credit_analysis model, correlating demographics, income brackets, and financial risk with customer sentiment (NPS).
+
+age_range │   income_range    │ portfolio_segment │ avg_nps │ customer_count │
+│  varchar  │      varchar      │      varchar      │ double  │     int64      │
+├───────────┼───────────────────┼───────────────────┼─────────┼────────────────┤
+│ 18–25     │ Below 5,000       │ At Risk           │    10.0 │              3 │
+│ 18–25     │ Below 5,000       │ High Risk         │    10.0 │              3 │
+│ 18–25     │ Below 5,000       │ Healthy           │     9.5 │             37 │
+│ 18–25     │ 100,000–149,999   │ Healthy           │     8.1 │            130 │
+│ 18–25     │ 20,000–29,999     │ At Risk           │     7.5 │             99 │
+│ 18–25     │ 20,000–29,999     │ Healthy           │     7.5 │            436 │
+│ 18–25     │ 150,000 and above │ At Risk           │     7.5 │             86 │
+│ 18–25     │ 5,000–9,999       │ At Risk           │     7.3 │             11 │
+│ 18–25     │ 150,000 and above │ Healthy           │     7.1 │            257 │
+│ 18–25     │ 10,000–19,999     │ High Risk         │     7.1 │            152 │
+│   ·       │      ·            │     ·             │      ·  │              · │
+│   ·       │      ·            │     ·             │      ·  │              · │
+│   ·       │      ·            │     ·             │      ·  │              · │
+│ Unknown   │ 5,000–9,999       │ High Risk         │     6.0 │             10 │
+│ Unknown   │ 30,000–49,999     │ At Risk           │     5.9 │             94 │
+│ Unknown   │ 5,000–9,999       │ Healthy           │     5.9 │             91 │
+│ Unknown   │ 10,000–19,999     │ At Risk           │     5.6 │             31 │
+│ Unknown   │ 50,000–99,999     │ High Risk         │     5.3 │            107 │
+│ Unknown   │ 5,000–9,999       │ At Risk           │     5.0 │             19 │
+│ Unknown   │ 20,000–29,999     │ At Risk           │     4.5 │             20 │
+│ Unknown   │ 10,000–19,999     │ High Risk         │     4.2 │             53 │
+│ Unknown   │ 30,000–49,999     │ High Risk         │     4.1 │             75 │
+│ Unknown   │ 150,000 and above │ High Risk         │     3.6 │            150 │
+├───────────┴───────────────────┴───────────────────┴─────────┴────────────────┤
+│ 132 rows (20 shown)                                                5 columns │
+
+
+By integrating NPS (Net Promoter Score) with credit performance data, we uncovered three critical trends that inform our lending strategy:
+
+1. The "Loyalty of Access" (Low-Income Youth)
+
+Segment: Age 18–25, Income < 5,000.
+
+This segment maintains an NPS of 10.0, even when categorized as High Risk.
+
+- These users highly value credit access. Traditional aggressive collections might destroy this high brand equity. We should implement "Soft Collections" or restructuring plans for this group to maintain long-term loyalty.
+
+2. High-Income Detractors
+
+Segment: Income 150,000+, High Risk.
+
+This group yielded the lowest sentiment in the dataset (3.6 NPS).
+
+- High-earners who fall into arrears are the most dissatisfied. This suggests "Product Friction"—perhaps the repayment interface or the automated reminders are perceived as intrusive by this affluent demographic.
+
+3. The Sentiment-Risk Inverse Correlation
+
+As users move from Healthy to High Risk, we see a 30%–50% drop in NPS across most segments.
+
+Conclusion
+Financial stress is a primary driver of brand detraction. Improving the customer experience during financial hardship is the biggest opportunity for increasing overall brand health.
