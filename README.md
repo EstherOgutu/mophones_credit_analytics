@@ -48,29 +48,35 @@ dbt test
 | Income | Below 5,000 | Active | 1,390 | 1.10% |
 | Income | Below 5,000 | Paid Off | 167 | 0.00% |
 
-The data reveals four distinct risk drivers that require different management strategies:
+**Risk Driver Analysis**
 
-**The Youth Gap (Age 18–25):**: 40.96% PAR with high First Month Defaults (FMD).
-- Likely "thin-file" borrowers with no credit history. High FMD suggests the scoring model is over-estimating the repayment capacity of first-time borrowers.
+Based on the demographic and income segmentation, the portfolio is being impacted by four distinct drivers:
 
-**The Affordability Ceiling (Income <5,000)**: 46.33% FMD rate.
-- Installments likely exceed disposable income. These borrowers lack a "financial buffer," making them highly sensitive to minor economic shocks.
+**1. The Youth Gap (Age 18–25): 40.96% PAR**
 
-**KYC Process Failure (Segment: "Unknown")**: PAR scores exceeding 100%.
-- Missing data usually correlates with bypassed sales protocols or fraud. You cannot collect from a customer you haven't identified.
+Finding: High First Month Defaults (FMD) suggest these are "thin-file" borrowers. The current scoring model likely overestimates the repayment capacity of users with no established credit history.
 
-**The Premium "Buyer's Remorse" (Income >150,000)**: High Return rates (49.73%) rather than defaults.
-- This is a Product/Logistics risk, not a credit risk. High-earners are returning devices due to dissatisfaction rather than an inability to pay.
+**2. The Affordability Ceiling (Income <5,000): 46.33% FMD**
 
-#### Recommendations
+Finding: Installments likely exceed disposable income. This segment lacks a "financial buffer," making them highly sensitive to even minor economic shocks.
 
-1. For Youth (18-25): Introduce "Step-Up" credit. Start with smaller loans to build a "repayment track record" before unlocking higher limits.
+**3. KYC Process Failure (Segment: "Unknown"): >100% Arrears Burden**
 
-2. For Low-Income: Align repayment cycles with income streams (e.g., daily micro-payments instead of large monthly chunks).
+Finding: Missing demographic data strongly correlates with bypassed sales protocols or identity fraud. It is nearly impossible to collect from a customer who hasn't been properly identified at onboarding.
 
-3. For "Unknowns": Tighten Point-of-Sale (POS) controls. Make demographic fields mandatory to prevent "ghost" accounts.
+**4. Premium "Buyer's Remorse" (Income >150,000): 49.73% Return Rate**
 
-4. For Premium Returns: Improve the "Product fit" or trial period experience to reduce the logistical cost of device returns. 
+Finding: This is a Logistics/Product risk, not a credit risk. High-earners are returning devices due to dissatisfaction or high expectations rather than an inability to pay.
+
+**Recommendations**
+
+1. Implement "Step-Up" Credit (Youth 18-25): Start with lower-limit loans to build a repayment track record. Successfully completing a 3-month cycle unlocks higher device tiers.
+
+2. Micro-Payment Alignments (Low-Income): Shift from large monthly installments to daily or weekly micro-payments that align with the cash-flow cycles of informal income earners.
+
+3. Mandatory KYC Gates (Unknowns): Hard-code Point-of-Sale (POS) requirements. The system should block loan disbursement unless all mandatory demographic and identity fields are verified.
+
+4. Enhanced Premium Onboarding (High-Income): Focus on the "unboxing" and setup experience. Providing 24/7 premium support during the first 14 days can reduce the friction that leads to high-value returns.
 
 <details>
 <summary><b>Click to view Technical SQL & Python Logic (Q1)</b></summary>
