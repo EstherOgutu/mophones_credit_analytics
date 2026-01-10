@@ -1,4 +1,52 @@
 # MoPhones Credit Risk Analysis
+## Optimizing Portfolio Recovery and Customer Lifetime Value
+
+## Project Overview
+This project engineered a modern data pipeline to bridge the gap between financial risk and customer experience. By unifying fragmented credit history, demographic data, and NPS sentiment, I developed a reporting engine that identifies not just who isn't paying, but why they are dissatisfied.
+
+## The Tech Stack
+This project utilizes the Modern Data Stack (MDS) to ensure scalability, version control, and analytical rigor:
+
+1. **dbt (data build tool)**: Managed the T (Transform) in ELT. Used for modular SQL modeling, data lineage, and automated testing.
+
+2. **DuckDB**: An in-process OLAP database used for high-performance analytical queries and local development.
+
+3. **Python**: Utilized for advanced data orchestration and generating the final executive matrix.
+
+4. **SQL**: The core engine for complex joins, window functions (deduplication), and risk calculations.
+
+5. **Git/GitHub**: Version control and documentation hosting.
+
+## Data Architecture & Lineage
+The pipeline follows a structured 3-layer approach to ensure data quality:
+
+1. **Staging Layer:** Cleaned raw CSV seeds into standardized formats (stg_customers, stg_credit_history).
+
+2. **Intermediate Layer:** Handled complex business logic, age/income bucketing, and row-level deduplication (income_age_customer_analysis).
+
+3. **Reporting Layer:** The final view designed for executive consumption, calculating Arrears Burden and Sentiment Correlation (rpt_credit_analysis).
+
+## The Process (Data Pipeline)
+
+1. **Ingestion**: Raw CSV files (Loans, History, NPS) were loaded as dbt seeds.
+
+2. **Staging**: Cleaned and cast data types in the staging layer.
+
+3. **Transformation**: Created a centralized customer view with age and income segmentation logic.
+
+4. **Reporting**: Built the final rpt_credit_analysis view, joining financial performance with customer sentiment.
+
+5. **Validation**: Applied dbt tests to ensure no null values in critical fields like loan_id.
+
+## How to Run
+
+**Clone the Repo**: git clone https://github.com/EstherOgutu/mophones_credit_analytics.git
+
+**Initialize Environment**: pip install dbt-duckdb duckdb
+
+**Build & Test**: Run dbt seed followed by dbt run and dbt test.
+
+**View Data**: Query the rpt_credit_analysis view directly in DuckDB or via the dbt compiled SQL.
 
 ## Setup & Execution
 To replicate this analysis, ensure you have the environment configured and run the following:
@@ -210,7 +258,10 @@ con.close()
 
 The following table represents the final output of the rpt_credit_analysis model, correlating demographics, income brackets, and financial risk with customer sentiment (NPS).
 
-### 📊 Customer Sentiment vs. Credit Risk Matrix
+
+### Question 3: Credit Outcomes Relating to Customer Satisfaction. What are the trade-off.
+
+### Customer Sentiment vs. Credit Risk Matrix
 
 | Age Range | Income Range | Portfolio Segment | Avg NPS | Customer Count |
 | :--- | :--- | :--- | :--- | :--- |
@@ -260,3 +311,35 @@ This group yielded the lowest sentiment in the dataset (3.6 NPS).
 **Conclusion**
 
 Financial stress is a primary driver of brand detraction. Improving the customer experience during financial hardship is the biggest opportunity for increasing overall brand health.
+
+
+### Question 4: What Assumptions were required due to the Point-in-Time Nature? 
+
+1. **Static Snapshots**: Assumed the snapshot_month reflects the final state of that month; however, intra-month fluctuations in arrears are not captured.
+
+2. **Constant Demographics**: Assumed attributes like avg_monthly_income and age are constant for the reporting period, which may not account for real-time changes in a customer's financial profile.
+
+3. **NPS Relevance**: Assumed NPS scores remain relevant throughout the loan lifecycle, though sentiment often shifts significantly between the "honeymoon" phase of a new loan and the "stress" phase of repayment.
+
+
+### Question 5: What were the Key Limitations & Impact of the Data?
+
+1. **"Unknown" Segments**: A significant volume of records (e.g., 150 high-income/high-risk customers) lacks age data. This lowers confidence in demographic-specific interventions for our highest-risk areas.
+
+2. **Inconsistent Data Types**: Fields like dob required complex parsing logic (TRY_STRPTIME), increasing the risk of calculation errors in age-based segmentation.
+
+3. **Missing Historical Context**: Without a full temporal view of payment behavior, we cannot distinguish between "chronic defaulters" and "one-time late payers," leading to a potentially broad and unfair "High Risk" categorization.
+
+
+### Question 6: What are the Improvement Recommendations to MoPhones' Credit Data?
+
+1. **Automated Data Validation**: Implement strict schema enforcement at the point of data entry to eliminate "Unknown" demographics and inconsistent date formats.
+
+2. **Dynamic Sentiment Mapping**: Trigger NPS surveys at specific credit milestones (e.g., after the 3rd successful payment or immediately after a missed payment) to capture the causal link between credit health and brand loyalty.
+
+3. **Advanced Risk Modeling**: Move beyond simple "Arrears Burden" ratios to include "Time-in-Arrears" and "Probability of Default" (PD) metrics for more granular portfolio steering.
+
+
+### Conclusion
+
+This analysis demonstrates that credit risk at MoPhones is not a monolithic problem. By segmenting the portfolio through a combined financial and sentiment lens, we identified that high-risk behavior does not always equal low brand loyalty. > The transition from raw data to a structured dbt pipeline has moved the business from reactive reporting (knowing what happened) to proactive strategy (knowing which levers to pull). To maximize future ROI, MoPhones should pivot its collection strategy toward "Behavioral Collections," treating high-NPS/High-Risk customers with supportive restructuring while tightening KYC protocols for the "Unknown" segments.
