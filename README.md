@@ -82,7 +82,7 @@ ORDER BY
   par_pct DESC
 """
 
-# Fetch results as tuples to avoid dependency on numpy/pandas
+# Fetch results 
 results = con.execute(query).fetchall()
 
 for row in results:
